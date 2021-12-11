@@ -1,2 +1,3 @@
 # crm-application
-CRM Application for a contractor
+CRM Application for contractors
+
