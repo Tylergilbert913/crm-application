@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require("sequelize");
-const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
 class Client extends Model {}
@@ -33,7 +32,7 @@ Client.init(
       allowNull: false,
     },
     zipcode: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     notes: {
