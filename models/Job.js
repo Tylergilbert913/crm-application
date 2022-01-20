@@ -5,7 +5,7 @@ class Job extends Model {}
 
 Invoice.init(
   {
-    JobID: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

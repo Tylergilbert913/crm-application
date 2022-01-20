@@ -5,7 +5,7 @@ class Estimate extends Model {}
 
 Estimate.init(
   {
-    EstimateID: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

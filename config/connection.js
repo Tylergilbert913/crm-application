@@ -1,21 +1,29 @@
-const Sequelize = require('sequelize');
-require('dotenv').config();
+const sql = require("mssql");
+require("dotenv").config();
 
-let sequelize;
+const sqlConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  database: process.env.DB_NAME,
+  server: "localhost",
+  pool: {
+    max: 10,
+    min: 0,
+    idleTimeoutMillis: 30000,
+  },
+  options: {
+    encrypt: true,
+    trustServerCertificate: false,
+  },
+};
 
-if (process.env.JAWSDB_URL) {
-  sequelize = new Sequelize(process.env.JAWSDB_URL);
-} else {
-  sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-      host: 'localhost',
-      dialect: 'sql',
-      port: 3310
-    }
-  );
-}
-
-module.exports = sequelize;
+async () => {
+  try {
+    // make sure that any items are correctly URL encoded in the connection string
+    await sql.connect(sqlConfig);
+    const result = await sql.query`select * from mytable where id = ${value}`;
+    console.dir(result);
+  } catch (err) {
+    // ... error checks
+  }
+};

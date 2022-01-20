@@ -5,7 +5,7 @@ class Invoice extends Model {}
 
 Invoice.init(
   {
-    InvoiceID: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -19,7 +19,7 @@ Invoice.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "estimate",
+        model: "invoice",
         key: "EstimateID",
         unique: true,
       },

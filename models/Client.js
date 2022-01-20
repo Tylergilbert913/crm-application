@@ -5,7 +5,7 @@ class Client extends Model {}
 
 Client.init(
   {
-    ClientID: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
