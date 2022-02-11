@@ -34,6 +34,10 @@ Client.init(
     zipcode: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      validate: {
+        isNumeric: true,
+        len: [5],
+      }
     },
     notes: {
       type: DataTypes.STRING,
