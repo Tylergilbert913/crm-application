@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const withAuth = require('../../utils/auth');
 const invoiceController = require("../../invoiceController");
+// const withAuth = require('../../utils/auth');
 
 // Matches with "/api/invoice" 
 router.route("/")

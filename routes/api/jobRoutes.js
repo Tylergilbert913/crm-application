@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const jobController = require("../../jobController");
-const withAuth = require('../../utils/auth');
+// const withAuth = require('../../utils/auth');
 
 // Matches with "/api/job" 
 router.route("/")
