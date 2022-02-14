@@ -3,6 +3,7 @@ const sequelize = require("./config/connection");
 // const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const routes = require("./routes");
 const transporter = require("./config/nodemailer");
+const cors = require('cors');
 
 const app = express();
 

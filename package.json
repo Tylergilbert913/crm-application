@@ -11,8 +11,16 @@
     "type": "git",
     "url": "git+https://github.com/Tylergilbert913/crm-application.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "node js",
+    "sql server",
+    "mssql",
+    "crud",
+    "express",
+    "sequelize",
+    "rest api"
+  ],
+  "author": "bradytyler",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Tylergilbert913/crm-application/issues"

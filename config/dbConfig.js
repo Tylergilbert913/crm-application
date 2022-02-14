@@ -6,7 +6,7 @@ module.exports = {
   DB: "crm_db",
   dialect: "mssql",
   pool: {
-    max: 10,
+    max: 10, 
     min: 0,
     acquire: 30000,
     idle: 10000,
