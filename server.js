@@ -4,7 +4,10 @@ const express = require("express");
 // const routes = require("./routes");
 // const transporter = require("./config/nodemailer");
 const cors = require("cors");
+
+
 const db = require("./models");
+db.sequelize.sync();
 
 const app = express();
 
@@ -34,17 +37,15 @@ app.use(express.urlencoded({ extended: true }));
 //     : console.log(`=== Server is ready to take messages: ${success}`);
 // });
 
-app.get("/", (req, res) => {
-  res.json({ message: "this route is working" });
-});
 
-const PORT = process.env.PORT || 3001;
+
 
 // Start the API Server
 // drop the table if it already exists
+const PORT = process.env.PORT || 3001;
 
-// db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () =>
     console.log(`🌎 ===> API Server now listening on PORT ${PORT}!`)
   );
-// });
+});

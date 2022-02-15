@@ -1,22 +1,17 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
-
-class Invoice extends Model {}
-
-Invoice.init(
-  {
+module.exports = (sequelize, Sequelize) => {
+  const Invoice = sequelize.define("Invoice", {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     invoice_total: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     EstimateID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       references: {
         model: "invoice",
@@ -24,15 +19,6 @@ Invoice.init(
         unique: true,
       },
     },
-  },
-
-  {
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: "invoice",
-  }
-);
-
-module.exports = Invoice;
+  });
+  return Invoice;
+};
