@@ -65,7 +65,7 @@ exports.update = (req, res) => {
   }).then((data) => {
     res.send(data).catch((err) => {
       res.status(500).send({
-        message: "An error occured when updating Lcient qith id=" + id,
+        message: "An error occured when updating Client with id=" + id,
       });
     });
   });
