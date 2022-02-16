@@ -36,20 +36,27 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    const name = req.query.first_name;
-    let condition = name ? { name: { [Op.like]: `%${name}%`} } : null;
-    Client.findAll({ where: condition })
-    .then(data => {
-        res.send(data);
+  const name = req.query.first_name;
+  let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+  Client.findAll({ where: condition })
+    .then((data) => {
+      res.send(data);
     })
-    .catch(err => {
-        res.status(500).send({
-            message: err.message || "An error occured while retrieving clients."
-        })
-    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "An error occured while retrieving clients.",
+      });
+    });
 };
 
-exports.findOne = (req, res) => {};
+exports.findOne = (req, res) => {
+  const id = req.params.id;
+  Client.findByPk(id).then((data) => {
+    res.status(500).send({
+      message: "An error occured when retrieving Client with id=" + id,
+    });
+  });
+};
 
 exports.update = (req, res) => {};
 
