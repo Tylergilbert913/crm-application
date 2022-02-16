@@ -62,15 +62,32 @@ exports.update = (req, res) => {
   const id = req.params.id;
   Client.update(req.body, {
     where: { id: id },
-  }).then((data) => {
-    res.send(data).catch((err) => {
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Client was updated succesfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Client with id=${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
       res.status(500).send({
-        message: "An error occured when updating Client with id=" + id,
+        message: err.message || "An error occured when updating Client with id=" + id,
       });
     });
-  });
 };
 
-exports.delete = (req, res) => {};
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Client.destroy(
+    {
+      where: { id: id },
+    }.then()
+  );
+};
 
 exports.deleteAll = (req, res) => {};
