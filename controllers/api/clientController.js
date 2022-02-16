@@ -30,12 +30,24 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Some type of error occured while creating the Client.",
+        message: "An error occured while creating the Client.",
       });
     });
 };
 
-exports.findAll = (req, res) => {};
+exports.findAll = (req, res) => {
+    const name = req.query.first_name;
+    let condition = name ? { name: { [Op.like]: `%${name}%`} } : null;
+    Client.findAll({ where: condition })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: reqerr.message || "An error occured while retrieving clients."
+        })
+    })
+};
 
 exports.findOne = (req, res) => {};
 
