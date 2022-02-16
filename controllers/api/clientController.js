@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
     })
     .catch(err => {
         res.status(500).send({
-            message: reqerr.message || "An error occured while retrieving clients."
+            message: err.message || "An error occured while retrieving clients."
         })
     })
 };
