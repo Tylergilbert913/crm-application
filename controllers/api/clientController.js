@@ -58,7 +58,18 @@ exports.findOne = (req, res) => {
   });
 };
 
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  const id = req.params.id;
+  Client.update(req.body, {
+    where: { id: id },
+  }).then((data) => {
+    res.send(data).catch((err) => {
+      res.status(500).send({
+        message: "An error occured when updating Lcient qith id=" + id,
+      });
+    });
+  });
+};
 
 exports.delete = (req, res) => {};
 
