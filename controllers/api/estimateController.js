@@ -121,4 +121,20 @@ exports.delete = (req, res) => {
   );
 };
 
-exports.deleteAll = (req, res) => {};
+exports.deleteAll = (req, res) => {
+  // Deleting all Clients
+  Estimate.destroy({
+    where: {},
+    truncate: false,
+  })
+    .then((nums) => {
+      res.send({
+        message: `${nums} Clients were deleted successfully.`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.essage || "An error occured while removiing all Clients.",
+      });
+    });
+};
