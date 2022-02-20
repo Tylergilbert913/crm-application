@@ -4,14 +4,14 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   // Validating request
-  if (!req.body.schedule_date) {
+  if (!req.body.JobID) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
     return;
   }
 
-  // Create a Client
+  // Create an Estimate
   const estimate = {
     schedule_date: req.body.schedule_date,
     schedule_date_start: req.body.schedule_date_start,
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     total: req.body.total,
     JobID: req.body.JobID,
   };
-  // Save Client in the database
+  // Save Estimate in the database
   Estimate.create(estimate)
     .then((data) => {
       res.send(data);
@@ -39,9 +39,9 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  // Finding all Client by their first names
-  const date = req.query.schedule_date;
-  let condition = date ? { date: { [Op.like]: `%${date}%` } } : null;
+  // Finding all Estimates by their JobID
+  const jobID = req.query.JobID;
+  let condition = jobID ? { jobID: { [Op.like]: `%${jobID}%` } } : null;
   Estimate.findAll({ where: condition })
     .then((data) => {
       res.send(data);
@@ -54,7 +54,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  // Finding Clients by their ID
+  // Finding Estimate by their ID
   const id = req.params.id;
   Estimate.findByPk(id).then((data) => {
     if (data) {
@@ -71,7 +71,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  // Updating Clients information by using their ID
+  // Updating Estimate information by using their ID
   const id = req.params.id;
   Estimate.update(req.body, {
     where: { id: id },
@@ -96,7 +96,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-  // Finding and deleting Client by their ID
+  // Finding and deleting Estimate by their ID
   const id = req.params.id;
   Estimate.destroy(
     {
@@ -122,7 +122,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-  // Deleting all Clients
+  // Deleting all Estimates
   Estimate.destroy({
     where: {},
     truncate: false,
