@@ -29,7 +29,18 @@ if (!req.body.ClientID) {
 };
 
 exports.findAll = (req, res) => {
-
+// Finding all Jobs by their clientID
+const clientID = req.body.ClientID;
+let condition = clientID ? { clientID: { [Op.like]: `%${clientID}%` } } : null;
+Client.findAll({ where: condition })
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
+    res.status(500).send({
+      message: err.message || "An error occured while retrieving Jobs.",
+    });
+  });
 };
 
 exports.findOne = (req, res) => {
