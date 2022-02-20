@@ -86,7 +86,29 @@ Job.update(req.body, {
 };
 
 exports.delete = (req, res) => {
-
+// Finding and deleting Job by their ID
+const id = req.params.id;
+Job.destroy(
+  {
+    where: { id: id },
+  }
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Job was succesfully deleted!",
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Job with id=${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || `Could not delete Job with id=${id}.`,
+      });
+    })
+);
 };
 
 exports.deleteAll = (req, res) => {
