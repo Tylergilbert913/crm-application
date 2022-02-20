@@ -76,7 +76,8 @@ exports.update = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "An error occured when updating Client with id=" + id,
+        message:
+          err.message || "An error occured when updating Client with id=" + id,
       });
     });
 };
@@ -86,7 +87,28 @@ exports.delete = (req, res) => {
   Client.destroy(
     {
       where: { id: id },
-    }.then()
+    }
+      .then((num) => {
+        where: {
+          id: id;
+        }
+      })
+      .then((num) => {
+        if (num == 1) {
+          res.send({
+            message: "Client was succesfully deleted!",
+          });
+        } else {
+          res.send({
+            message: `Cannot delete Client with id=${id}.`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: `Could not delete Client with id=${id}.`,
+        });
+      })
   );
 };
 
