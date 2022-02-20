@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "An error occured while creating the Client.",
+        message: err.message || "An error occured while creating the Estimate.",
       });
     });
 };
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "An error occured while retrieving clients.",
+        message: err.message || "An error occured while retrieving Estimates.",
       });
     });
 };
@@ -61,11 +61,11 @@ exports.findOne = (req, res) => {
       res.send(data);
     } else {
       res.status(404).send({
-        message: `Cannot find CLient with id=${id}.`,
+        message: `Cannot find Estimate with id=${id}.`,
       });
     }
     res.status(500).send({
-      message: "An error occured when retrieving Client with id=" + id,
+      message: "An error occured when retrieving Estimate with id=" + id,
     });
   });
 };
@@ -79,18 +79,18 @@ exports.update = (req, res) => {
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Client was updated succesfully.",
+          message: "Estimate was updated succesfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Client with id=${id}.`,
+          message: `Cannot update Estimate with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "An error occured when updating Client with id=" + id,
+          err.message || "An error occured when updating Estimate with id=" + id,
       });
     });
 };
@@ -105,17 +105,17 @@ exports.delete = (req, res) => {
       .then((num) => {
         if (num == 1) {
           res.send({
-            message: "Client was succesfully deleted!",
+            message: "Estimate was succesfully deleted!",
           });
         } else {
           res.send({
-            message: `Cannot delete Client with id=${id}.`,
+            message: `Cannot delete Estimate with id=${id}.`,
           });
         }
       })
       .catch((err) => {
         res.status(500).send({
-          message: err.message || `Could not delete Client with id=${id}.`,
+          message: err.message || `Could not delete Estimate with id=${id}.`,
         });
       })
   );
@@ -129,12 +129,12 @@ exports.deleteAll = (req, res) => {
   })
     .then((nums) => {
       res.send({
-        message: `${nums} Clients were deleted successfully.`,
+        message: `${nums} Estimates were deleted successfully.`,
       });
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.essage || "An error occured while removiing all Clients.",
+        message: err.essage || "An error occured while removiing all Estimates.",
       });
     });
 };
