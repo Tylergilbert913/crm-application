@@ -36,7 +36,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    // Finding all Client by their first names
+  // Finding all Client by their first names
   const name = req.query.first_name;
   let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
   Client.findAll({ where: condition })
@@ -51,17 +51,16 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    // Finding Clients by their ID
+  // Finding Clients by their ID
   const id = req.params.id;
   Client.findByPk(id).then((data) => {
-      if (data) {
-          res.send(data);
-      }
-      else {
-          res.status(404).send({
-              message: `Cannot find CLient with id=${id}.`
-          })
-      }
+    if (data) {
+      res.send(data);
+    } else {
+      res.status(404).send({
+        message: `Cannot find CLient with id=${id}.`,
+      });
+    }
     res.status(500).send({
       message: "An error occured when retrieving Client with id=" + id,
     });
@@ -69,7 +68,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    // Updating Clients information by using their ID
+  // Updating Clients information by using their ID
   const id = req.params.id;
   Client.update(req.body, {
     where: { id: id },
@@ -93,9 +92,8 @@ exports.update = (req, res) => {
     });
 };
 
-
 exports.delete = (req, res) => {
-    // Finding and deleting Client by their ID
+  // Finding and deleting Client by their ID
   const id = req.params.id;
   Client.destroy(
     {
@@ -114,14 +112,14 @@ exports.delete = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: `Could not delete Client with id=${id}.`,
+          message: err.message || `Could not delete Client with id=${id}.`,
         });
       })
   );
 };
 
 exports.deleteAll = (req, res) => {
-    // Deleting all Clients 
+  // Deleting all Clients
   Client.destroy({
     where: {},
     truncate: false,
