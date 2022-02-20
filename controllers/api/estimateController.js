@@ -70,7 +70,30 @@ exports.findOne = (req, res) => {
   });
 };
 
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  // Updating Clients information by using their ID
+  const id = req.params.id;
+  Estimate.update(req.body, {
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Client was updated succesfully.",
+        });
+      } else {
+        res.send({
+          message: `Cannot update Client with id=${id}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "An error occured when updating Client with id=" + id,
+      });
+    });
+};
 
 exports.delete = (req, res) => {};
 
