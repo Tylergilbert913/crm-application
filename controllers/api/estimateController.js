@@ -12,7 +12,7 @@ exports.create = (req, res) => {
   }
 
   // Create a Client
-  const client = {
+  const estimate = {
     schedule_date: req.body.schedule_date,
     schedule_date_start: req.body.schedule_date_start,
     schedule_date_end: req.body.schedule_date_end,
@@ -27,18 +27,32 @@ exports.create = (req, res) => {
     JobID: req.body.JobID,
   };
   // Save Client in the database
-  Client.create(client)
+  Estimate.create(estimate)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "An error occured while creating the Client.",
+        message: err.message || "An error occured while creating the Client.",
       });
     });
 };
 
-exports.findAll = (req, res) => {};
+exports.findAll = (req, res) => {
+    // Finding all Client by their first names
+  const date = req.query.schedule_date;
+  let condition = date ? { date: { [Op.like]: `%${date}%` } } : null;
+  Estimate.findAll({ where: condition })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "An error occured while retrieving clients.",
+      });
+    });
+};
+
 
 exports.findOne = (req, res) => {};
 
