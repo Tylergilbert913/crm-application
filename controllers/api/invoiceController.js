@@ -44,7 +44,20 @@ Client.findAll({ where: condition })
 };
 
 exports.findOne = (req, res) => {
-
+// Finding Clients by their ID
+const id = req.params.id;
+Invoice.findByPk(id).then((data) => {
+  if (data) {
+    res.send(data);
+  } else {
+    res.status(404).send({
+      message: `Cannot find CLient with id=${id}.`,
+    });
+  }
+  res.status(500).send({
+    message: "An error occured when retrieving Client with id=" + id,
+  });
+});
 };
 
 exports.update = (req, res) => {
