@@ -30,7 +30,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "An error occured while creating the Client.",
+        message: err.message || "An error occured while creating the Client.",
       });
     });
 };
