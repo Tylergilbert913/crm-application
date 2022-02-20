@@ -98,7 +98,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   // Finding and deleting Client by their ID
   const id = req.params.id;
-  Client.destroy(
+  Estimate.destroy(
     {
       where: { id: id },
     }
