@@ -29,7 +29,18 @@ if (!req.body.invoice_total) {
 };
 
 exports.findAll = (req, res) => {
-
+// Finding all Client by their first names
+const total = req.query.invoice_total;
+let condition = total ? { total: { [Op.like]: `%${total}%` } } : null;
+Client.findAll({ where: condition })
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
+    res.status(500).send({
+      message: err.message || "An error occured while retrieving clients.",
+    });
+  });
 };
 
 exports.findOne = (req, res) => {
