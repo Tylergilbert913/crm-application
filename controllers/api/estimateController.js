@@ -39,7 +39,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    // Finding all Client by their first names
+  // Finding all Client by their first names
   const date = req.query.schedule_date;
   let condition = date ? { date: { [Op.like]: `%${date}%` } } : null;
   Estimate.findAll({ where: condition })
@@ -53,8 +53,22 @@ exports.findAll = (req, res) => {
     });
 };
 
-
-exports.findOne = (req, res) => {};
+exports.findOne = (req, res) => {
+  // Finding Clients by their ID
+  const id = req.params.id;
+  Estimate.findByPk(id).then((data) => {
+    if (data) {
+      res.send(data);
+    } else {
+      res.status(404).send({
+        message: `Cannot find CLient with id=${id}.`,
+      });
+    }
+    res.status(500).send({
+      message: "An error occured when retrieving Client with id=" + id,
+    });
+  });
+};
 
 exports.update = (req, res) => {};
 
