@@ -112,5 +112,19 @@ Job.destroy(
 };
 
 exports.deleteAll = (req, res) => {
-
+// Deleting all Jobs
+Job.destroy({
+    where: {},
+    truncate: false,
+  })
+    .then((nums) => {
+      res.send({
+        message: `${nums} Jobs were deleted successfully.`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.essage || "An error occured while removiing all Jobs.",
+      });
+    });
 };
