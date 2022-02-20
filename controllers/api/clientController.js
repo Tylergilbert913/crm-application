@@ -36,6 +36,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+    // Finding all Client by their first names
   const name = req.query.first_name;
   let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
   Client.findAll({ where: condition })
@@ -50,6 +51,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
+    // Finding Clients by their ID
   const id = req.params.id;
   Client.findByPk(id).then((data) => {
     res.status(500).send({
@@ -59,6 +61,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
+    // Updating Clients information by using their ID
   const id = req.params.id;
   Client.update(req.body, {
     where: { id: id },
@@ -82,17 +85,14 @@ exports.update = (req, res) => {
     });
 };
 
+
 exports.delete = (req, res) => {
+    // Finding and deleting Client by their ID
   const id = req.params.id;
   Client.destroy(
     {
       where: { id: id },
     }
-      .then((num) => {
-        where: {
-          id: id;
-        }
-      })
       .then((num) => {
         if (num == 1) {
           res.send({
@@ -113,6 +113,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
+    // Deleting all Clients 
   Client.destroy({
     where: {},
     truncate: false,
