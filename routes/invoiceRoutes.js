@@ -3,17 +3,16 @@ module.exports = (app) => {
   const router = require("express").Router();
 
   // Matches with "/api/invoice"
-  router
-    .route("/")
-    .get(invoiceController.findAll)
-    .post(invoiceController.create);
+
+  router.get("/", invoiceController.findAll);
+  router.post("/", invoiceController.create);
+  router.delete("/", invoiceController.delete);
 
   // Matches with "/api/invoice/:id"
-  router
-    .route("/:id")
-    .get(invoiceController.findById)
-    .put(invoiceController.update)
-    .delete(invoiceController.remove);
+
+  router.get("/:id", invoiceController.findById);
+  router.put("/:id", invoiceController.update);
+  router.delete("/:id", invoiceController.delete);
 
   app.use("/api/invoiceController", router);
 };
