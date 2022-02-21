@@ -3,17 +3,16 @@ module.exports = (app) => {
   const router = require("express").Router();
 
   // Matches with "/api/job"
-    router
-    .route("/")
-    .get(jobController.findAll)
-    .post(jobController.create);
+
+  router.get("/", jobController.findAll);
+  router.post("/", jobController.create);
+  router.delete("/", jobController.deleteAll);
 
   // Matches with "/api/job/:id"
-  router
-    .route("/:id")
-    .get(jobController.findById)
-    .put(jobController.update)
-    .delete(jobController.remove);
 
-    app.use("/api/jobController", router);
+  router.get("/:id", jobController.findById);
+  router.put("/:id", jobController.update);
+  router.delete("/:id", jobController.delete);
+
+  app.use("/api/jobController", router);
 };
