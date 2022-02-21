@@ -5,12 +5,12 @@ module.exports = (app) => {
   // Matches with "/api/client"
   router.post("/", clientController.create);
   router.get("/", clientController.findAll);
-  router.delete("/", clientController.remove);
+  router.delete("/", clientController.deleteAll);
 
   // Matches with "/api/client/:id"
-  router.get("/:id", clientController.findById);
+  router.get("/:id", clientController.findOne);
   router.put("/:id", clientController.update);
-  router.delete("/:id", clientController.remove);
+  router.delete("/:id", clientController.delete);
 
   app.use("/api/clientController", router);
 };
