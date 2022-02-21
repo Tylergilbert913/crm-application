@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const invoiceController = require("../../invoiceController");
+  const invoiceController = require("../controllers/invoiceController");
   const router = require("express").Router();
 
   // Matches with "/api/invoice"
