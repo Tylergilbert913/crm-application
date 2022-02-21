@@ -3,7 +3,7 @@ module.exports = {
   PORT: "3001",
   USER: "bradytyler",
   PASSWORD: "jeepjetta1!",
-  DB: "crm_db",
+  DB: "Crm_db",
   dialect: "mssql",
   pool: {
     max: 10, 
