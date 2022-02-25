@@ -56,18 +56,15 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   // Finding Estimate by their ID
   const id = req.params.id;
-  Estimate.findByPk(id).then((data) => {
-    if (data) {
+  Estimate.findByPk(id)
+    .then((data) => {
       res.send(data);
-    } else {
-      res.status(404).send({
-        message: `Cannot find Estimate with id=${id}.`,
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error retrieving Estimate with id=" + id,
       });
-    }
-    res.status(500).send({
-      message: "An error occured when retrieving Estimate with id=" + id,
     });
-  });
 };
 
 exports.update = (req, res) => {
@@ -90,7 +87,8 @@ exports.update = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "An error occured when updating Estimate with id=" + id,
+          err.message ||
+          "An error occured when updating Estimate with id=" + id,
       });
     });
 };
@@ -98,27 +96,25 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   // Finding and deleting Estimate by their ID
   const id = req.params.id;
-  Estimate.destroy(
-    {
-      where: { id: id },
-    }
-      .then((num) => {
-        if (num == 1) {
-          res.send({
-            message: "Estimate was succesfully deleted!",
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Estimate with id=${id}.`,
-          });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || `Could not delete Estimate with id=${id}.`,
+  Estimate.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Estimate was deleted successfully!",
         });
-      })
-  );
+      } else {
+        res.send({
+          message: `Cannot delete Estimate with id=${id}. Maybe Estimate was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Could not delete Estimate with id=" + id,
+      });
+    });
 };
 
 exports.deleteAll = (req, res) => {
@@ -134,7 +130,8 @@ exports.deleteAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.essage || "An error occured while removiing all Estimates.",
+        message:
+          err.essage || "An error occured while removiing all Estimates.",
       });
     });
 };
