@@ -46,16 +46,13 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   // Finding Clients by their ID
   const id = req.params.id;
-  Invoice.findByPk(id).then((data) => {
-    if (data) {
-      res.send(data);
-    } else {
-      res.status(404).send({
-        message: `Cannot find Invoice with id=${id}.`,
-      });
-    }
+  Invoice.findByPk(id)
+  .then((data) => {
+    res.send(data);
+  })
+  .catch((err) => {
     res.status(500).send({
-      message: "An error occured when retrieving Invoice with id=" + id,
+      message: err.message || "Error retrieving Invoice with id=" + id,
     });
   });
 };
@@ -88,27 +85,25 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     // Finding and deleting Client by their ID
   const id = req.params.id;
-  Invoice.destroy(
-    {
-      where: { id: id },
-    }
-      .then((num) => {
-        if (num == 1) {
-          res.send({
-            message: "Invoice was succesfully deleted!",
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Invoice with id=${id}.`,
-          });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || `Could not delete Invoice with id=${id}.`,
+  Invoice.destroy({
+    where: { id: id },
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Invoice was deleted successfully!",
         });
-      })
-  );
+      } else {
+        res.send({
+          message: `Cannot delete Invoice with id=${id}. Maybe Invoice was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Could not delete Invoice with id=" + id,
+      });
+    });
 };
 
 exports.deleteAll = (req, res) => {
