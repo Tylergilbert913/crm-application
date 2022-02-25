@@ -20,22 +20,17 @@
     "sequelize",
     "rest api"
   ],
-  "author": "bradytyler",
+  "author": "Tyler",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Tylergilbert913/crm-application/issues"
   },
   "homepage": "https://github.com/Tylergilbert913/crm-application#readme",
   "dependencies": {
-    "connect-session-sequelize": "^7.1.2",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.2",
-    "express-session": "^1.17.2",
-    "mssql": "^7.3.0",
+    "express": "^4.17.3",
     "node": "^17.4.0",
-    "nodemailer": "^6.7.2",
-    "sequelize": "^6.12.0",
+    "sequelize": "^6.16.3",
     "tedious": "^14.3.0"
   },
   "devDependencies": {

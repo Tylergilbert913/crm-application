@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const estimateController = require("../controllers/estimateController");
+  const estimateController = require("../controllers/estimateController.js");
   const router = require("express").Router();
 
   // Matches with "/api/estimate"
@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   router.get("/:id", estimateController.findOne);
   router.put("/:id", estimateController.update);
-  router.delete("/:id", estimateController.remove);
+  router.delete("/:id", estimateController.delete);
 
   app.use("/api/estimateController", router);
 };

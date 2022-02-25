@@ -53,18 +53,15 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   // Finding Clients by their ID
   const id = req.params.id;
-  Client.findByPk(id).then((data) => {
-    if (data) {
+  Client.findByPk(id)
+    .then((data) => {
       res.send(data);
-    } else {
-      res.status(404).send({
-        message: `Cannot find CLient with id=${id}.`,
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error retrieving Client with id=" + id,
       });
-    }
-    res.status(500).send({
-      message: "An error occured when retrieving Client with id=" + id,
     });
-  });
 };
 
 exports.update = (req, res) => {

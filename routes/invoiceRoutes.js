@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const invoiceController = require("../controllers/invoiceController");
+  const invoiceController = require("../controllers/invoiceController.js");
   const router = require("express").Router();
 
   // Matches with "/api/invoice"
@@ -10,7 +10,7 @@ module.exports = (app) => {
 
   // Matches with "/api/invoice/:id"
 
-  router.get("/:id", invoiceController.findById);
+  router.get("/:id", invoiceController.findOne);
   router.put("/:id", invoiceController.update);
   router.delete("/:id", invoiceController.delete);
 

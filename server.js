@@ -2,12 +2,9 @@ const express = require("express");
 // const transporter = require("./config/nodemailer");
 const cors = require("cors");
 const app = express();
-const db = require("./models");
 
-db.sequelize.sync();
-
-let corsOptions = {
-  origin: "https://localhost:3000",
+const corsOptions = {
+  origin: "http://localhost:3000",
 };
 
 app.use(cors(corsOptions));
@@ -18,7 +15,13 @@ app.use(express.json());
 // parse request of content-type - application/x-www-former-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+const db = require("./models");
+
 db.sequelize.sync();
+
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to tylers application." });
+});
 
 require("./routes/clientRoutes")(app);
 require("./routes/estimateRoutes")(app);
