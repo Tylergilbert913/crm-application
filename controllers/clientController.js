@@ -93,22 +93,22 @@ exports.delete = (req, res) => {
   // Finding and deleting Client by their ID
   const id = req.params.id;
   Client.destroy({
-    where: { id: id }
+    where: { id: id },
   })
-    .then(num => {
+    .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Client was deleted successfully!"
+          message: "Client was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Client with id=${id}. Maybe Client was not found!`
+          message: `Cannot delete Client with id=${id}. Maybe Client was not found!`,
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Client with id=" + id
+        message: "Could not delete Client with id=" + id,
       });
     });
 };

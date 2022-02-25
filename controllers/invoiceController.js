@@ -47,14 +47,14 @@ exports.findOne = (req, res) => {
   // Finding Clients by their ID
   const id = req.params.id;
   Invoice.findByPk(id)
-  .then((data) => {
-    res.send(data);
-  })
-  .catch((err) => {
-    res.status(500).send({
-      message: err.message || "Error retrieving Invoice with id=" + id,
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error retrieving Invoice with id=" + id,
+      });
     });
-  });
 };
 
 exports.update = (req, res) => {
@@ -83,7 +83,7 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    // Finding and deleting Client by their ID
+  // Finding and deleting Client by their ID
   const id = req.params.id;
   Invoice.destroy({
     where: { id: id },
@@ -107,7 +107,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteAll = (req, res) => {
-    // Deleting all Clients
+  // Deleting all Clients
   Invoice.destroy({
     where: {},
     truncate: false,
