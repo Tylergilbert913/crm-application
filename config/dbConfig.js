@@ -2,7 +2,7 @@ module.exports = {
   HOST: "localhost",
   PORT: "3001",
   USER: "bradytyler",
-  PASSWORD: "JeepJetta1!",
+  PASSWORD: "jeepjetta1!",
   DB: "Crm_db",
   dialect: "mssql",
   pool: {
@@ -15,4 +15,6 @@ module.exports = {
 
 // server name used for MSSQL database
 // server: "crmtexas.database.windows.net",
+// password: jeepjetta1!
+// user: bradytyler
 
