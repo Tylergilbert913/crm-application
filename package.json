@@ -29,9 +29,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "node": "^17.4.0",
-    "sequelize": "^6.16.3",
-    "tedious": "^14.3.0"
+    "sequelize": "^6.17.0",
+    "tedious": "^11.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
