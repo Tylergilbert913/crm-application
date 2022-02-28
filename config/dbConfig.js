@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "localhost",
+  SERVER: "crmtexas.database.windows.net",
   PORT: "3001",
   USER: "bradytyler",
   PASSWORD: "jeepjetta1!",
