@@ -13,5 +13,5 @@ module.exports = (app) => {
   router.put("/:id", estimateController.update);
   router.delete("/:id", estimateController.delete);
 
-  app.use("/api/estimateController", router);
+  app.use("/api/estimate", router);
 };
