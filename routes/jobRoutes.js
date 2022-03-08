@@ -14,5 +14,5 @@ module.exports = (app) => {
   router.put("/:id", jobController.update);
   router.delete("/:id", jobController.delete);
 
-  app.use("/api/jobController", router);
+  app.use("/api/job", router);
 };
