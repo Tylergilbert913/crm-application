@@ -1,7 +1,8 @@
 const dbConfig = require("../config/dbConfig.js");
 const Sequelize = require("sequelize");
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.SERVER,
+  host: dbConfig.HOST,
   port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   pool: {
@@ -11,9 +12,12 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     idle: dbConfig.pool.idle,
   },
 });
+
 const db = {};
+
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
 db.client = require("./Client.js")(sequelize, Sequelize);
 db.estimate = require("./Estimate.js")(sequelize, Sequelize);
 db.invoice = require("./Invoice.js")(sequelize, Sequelize);
