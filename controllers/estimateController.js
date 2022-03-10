@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
     where: { id: id },
   })
     .then((num) => {
-      if (num == 1) {
+      if (num == num) {
         res.send({
           message: "Estimate was deleted successfully!",
         });
