@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   // Validating request
-  if (!req.body.invoice_total) {
+  if (!req.body[0].invoice_total) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
@@ -13,8 +13,8 @@ exports.create = (req, res) => {
 
   // Create a Client
   const invoice = {
-    invoice_total: req.body.invoice_total,
-    EstimateID: req.body.EstimateID,
+    invoice_total: req.body[0].invoice_total,
+    EstimateID: req.body[0].EstimateID,
   };
   // Save Client in the database
   Invoice.create(invoice)
