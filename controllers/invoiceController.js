@@ -64,7 +64,7 @@ exports.update = (req, res) => {
     where: { id: id },
   })
     .then((num) => {
-      if (num == 1) {
+      if (num == num) {
         res.send({
           message: "Invoice was updated succesfully.",
         });
@@ -89,7 +89,7 @@ exports.delete = (req, res) => {
     where: { id: id },
   })
     .then((num) => {
-      if (num == 1) {
+      if (num == num) {
         res.send({
           message: "Invoice was deleted successfully!",
         });
