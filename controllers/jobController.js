@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   // Validating request
-  if (!req.body.ClientID) {
+  if (!req.body[0].ClientID) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
@@ -13,8 +13,8 @@ exports.create = (req, res) => {
 
   // Create a Job
   const job = {
-    tech_notes: req.body.tech_notes,
-    ClientID: req.body.ClientID,
+    tech_notes: req.body[0].tech_notes,
+    ClientID: req.body[0].ClientID,
   };
   // Save Job in the database
   Job.create(job)
