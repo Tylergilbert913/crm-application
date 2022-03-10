@@ -3,8 +3,10 @@ const Estimate = db.estimate;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
+  console.log(req.body);
+
   // Validating request
-  if (!req.body.JobID) {
+  if (!req.body[0].JobID) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
@@ -13,18 +15,18 @@ exports.create = (req, res) => {
 
   // Create an Estimate
   const estimate = {
-    schedule_date: req.body.schedule_date,
-    schedule_date_start: req.body.schedule_date_start,
-    schedule_date_end: req.body.schedule_date_end,
-    description: req.body.description,
-    labor_cost: req.body.labor_cost,
-    material_cost: req.body.material_cost,
-    material_type: req.body.material_type,
-    material_quanity: req.body.material_quanity,
-    discount: req.body.discount,
-    subtotal: req.body.subtotal,
-    total: req.body.total,
-    JobID: req.body.JobID,
+    schedule_date: req.body[0].schedule_date,
+    schedule_date_start: req.body[0].schedule_date_start,
+    schedule_date_end: req.body[0].schedule_date_end,
+    description: req.body[0].description,
+    labor_cost: req.body[0].labor_cost,
+    material_cost: req.body[0].material_cost,
+    material_type: req.body[0].material_type,
+    material_quanity: req.body[0].material_quanity,
+    discount: req.body[0].discount,
+    subtotal: req.body[0].subtotal,
+    total: req.body[0].total,
+    JobID: req.body[0].JobID,
   };
   // Save Estimate in the database
   Estimate.create(estimate)
