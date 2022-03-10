@@ -10,15 +10,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    EstimateID: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: "invoice",
-        key: "EstimateID",
-        unique: true,
-      },
-    },
+    // EstimateID: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: "invoice",
+    //     key: "EstimateID",
+    //     unique: true,
+    //   },
+    // },
   });
   return Invoice;
 };

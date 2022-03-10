@@ -4,7 +4,8 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   // Validating request
-  if (!req.body.first_name) {
+  console.log(req.body)
+  if (!req.body[0].first_name) {
     res.status(400).send({
       message: "Content can not be empty!",
     });
@@ -13,15 +14,15 @@ exports.create = (req, res) => {
 
   // Create a Client
   const client = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    street_number_name: req.body.street_number_name,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode,
-    notes: req.body.notes,
-    email_address: req.body.email_address,
-    password: req.body.password,
+    first_name: req.body[0].first_name,
+    last_name: req.body[0].last_name,
+    street_number_name: req.body[0].street_number_name,
+    city: req.body[0].city,
+    state: req.body[0].state,
+    zipcode: req.body[0].zipcode,
+    notes: req.body[0].notes,
+    email_address: req.body[0].email_address,
+    password: req.body[0].password,
   };
   // Save Client in the database
   Client.create(client)

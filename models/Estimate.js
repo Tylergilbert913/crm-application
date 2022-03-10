@@ -50,15 +50,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    JobID: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: "job",
-        key: "JobID",
-        unique: true,
-      },
-    },
+    // JobID: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: "job",
+    //     key: "JobID",
+    //     unique: true,
+    //   },
+    // },
   });
   return Estimate;
 };

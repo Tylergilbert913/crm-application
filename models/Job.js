@@ -10,15 +10,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    ClientID: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: "client",
-        key: "ClientID",
-        unique: true,
-      },
-    },
+    // ClientID: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: "client",
+    //     key: "ClientID",
+    //     unique: true,
+    //   },
+    // },
   });
   return Job;
 };

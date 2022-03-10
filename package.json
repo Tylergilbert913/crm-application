@@ -11,16 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Tylergilbert913/crm-application.git"
   },
-  "keywords": [
-    "node js",
-    "sql server",
-    "mssql",
-    "crud",
-    "express",
-    "sequelize",
-    "rest api"
-  ],
-  "author": "Tyler",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Tylergilbert913/crm-application/issues"
@@ -30,10 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mssql": "^8.0.2",
-    "sequelize": "^6.17.0",
-    "tedious": "^11.8.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+    "node": "^17.5.0",
+    "sequelize": "^6.17.0"
   }
 }
