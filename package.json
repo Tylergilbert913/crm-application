@@ -25,5 +25,6 @@
     "node": "^17.5.0",
     "sequelize": "^6.17.0",
     "tedious": "^14.3.0"
-  }
+  },
+  "devDependencies": {}
 }
