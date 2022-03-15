@@ -16,7 +16,7 @@ app.use(express.json());
 // parse request of content-type - application/x-www-former-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./models");
+const db = require("./server/models");
 
 // to drop existing tables and re-sync database
 db.sequelize.sync();
@@ -28,10 +28,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to tylers application." });
 });
 
-require("./routes/clientRoutes")(app);
-require("./routes/estimateRoutes")(app);
-require("./routes/invoiceRoutes")(app);
-require("./routes/jobRoutes")(app);
+require("./server/routes/clientRoutes")(app);
+require("./server/routes/estimateRoutes")(app);
+require("./server/routes/invoiceRoutes")(app);
+require("./server/routes/jobRoutes")(app);
 
 // Start the API Server
 // drop the table if it already exists
